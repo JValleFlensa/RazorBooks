@@ -1,0 +1,51 @@
+﻿@page
+@model RazorBooks.Web.Pages.Category.IndexModel
+@{
+
+}
+
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-6">
+            <h2>Category Index</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary" asp-page="/Category/Create">
+                <i class="bi bi-plus-square"></i>
+                Crear Categoria
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Order de Visualización</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.categories)
+        {
+            <tr>
+                <td style="width: 50%">@category.Name</td>
+                <td style="width: 10%">@category.DisplayOrder</td>
+                <td style="width: 10%">
+                    <a class="btn btn-warning" asp-page="/Category/Edit" asp-route-id="@category.Id">
+                        <i class="bi bi-pencil"></i>Editar
+                    </a>
+                </td>
+                <td style="width: 10%">
+                    <a class="btn btn-danger" asp-page="/Category/Delete" asp-route-id="@category.Id">
+                        <i class="bi bi-trash"></i>Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
