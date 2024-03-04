@@ -1,0 +1,24 @@
+﻿@page
+@model RazorBooks.Web.Pages.Category.DeleteModel
+@{
+}
+<form method="post">
+    <input type="hidden" asp-for="Category.Id" />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Category</h2>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category.Name"></label>
+            <input asp-for="Category.Name" class="form-control" readonly />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category.DisplayOrder"></label>
+            <input asp-for="Category.DisplayOrder" class="form-control" max="100" min="1" readonly />
+        </div>
+        <div class="text-end">
+            <button class="btn btn-info" style="width: 200px" type="submit">Eliminar Categoria</button>
+            <a class="btn btn-secondary" asp-page="/Category/Index" style="width: 100px">Cancelar</a>
+        </div>
+    </div>
+</form>

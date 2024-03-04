@@ -5,13 +5,12 @@ using RazorBooks.Web.Data;
 namespace RazorBooks.Web.Pages.Category
 {
     [BindProperties]
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
-
         private readonly ApplicationDbContext _context;
         public Models.Category Category { get; set; } = null!;
 
-        public EditModel(ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -27,23 +26,10 @@ namespace RazorBooks.Web.Pages.Category
 
         public IActionResult OnPost()
         {
-            if (Category.Name == Category.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("Category.Name", "El nombre de la categoría no puede ser el mismo al del orden!");
-                return Page();
-            }
-
-            if (ModelState.IsValid)
-            {
-                _context.Categories.Update(Category);
-                _context.SaveChanges();
-                TempData["success"] = "Categoria modificada satisfactoriamente";
-            }
-            else {
-                return Page();
-            }
+            _context.Remove(Category);
+            _context.SaveChanges();
+            TempData["success"] = "Categoria eliminada satisfactoriamente";
             return RedirectToPage("Index");
         }
     }
 }
-

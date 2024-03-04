@@ -34,8 +34,13 @@ namespace RazorBooks.Web.Pages.Category
             {
                 await _context.Categories.AddAsync(Category);
                 await _context.SaveChangesAsync();
+                TempData["success"] = "Categoria creada satisfactoriamente";
             }
-            return RedirectToPage(nameof(Index));
+            else
+            {
+                return Page();
+            }
+            return RedirectToPage("Index");
         }
     }
 }
